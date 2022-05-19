@@ -11,21 +11,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
   m_Name: NewPalette
-  m_EditorClassIdentifier: Assembly-CSharp:XAppearance.Color:XColorPalette
-  PaletteName: 
-  ColorSet:
-  - ColorName: Default
-    r: 0.585
-    g: 0
-    b: 0
-    a: 0
-  - ColorName: Default
-    r: 0.827
-    g: 0
-    b: 0
-    a: 0
-  - ColorName: Default
-    r: 0
-    g: 0
-    b: 0
-    a: 0
+  m_EditorClassIdentifier: Assembly-CSharp:XPalette:XColorPalette
+  PaletteName: Default
+  ColorSet: []

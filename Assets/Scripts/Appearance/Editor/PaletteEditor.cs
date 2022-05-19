@@ -7,7 +7,6 @@ using UnityEditorInternal;
 namespace XPalette
 {
     [CustomEditor(typeof(XColorPalette))]
-    [System.Serializable]
     public class XColorPaletteEditor : Editor
     {
         private XColorPalette palette;

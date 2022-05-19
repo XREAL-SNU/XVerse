@@ -32,7 +32,7 @@ namespace XAppearance.Property
 
         public ObjectPartProperty()
         {
-            ColorPalette = new XColorPalette();
+            ColorPalette = null;
             Pick = 0;
         }
 

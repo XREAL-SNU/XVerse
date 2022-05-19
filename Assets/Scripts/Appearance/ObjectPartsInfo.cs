@@ -5,25 +5,26 @@ using UnityEngine;
 namespace XAppearance.Property
 {
     [System.Serializable]
-    public class ObjectParts
+    public class ObjectPartsInfo
     {
         public string ObjectType;
         public string ObjectName;
         public List<ObjectPart> Parts;
+        public static string Parts_Prop_Name => nameof(Parts);
 
-        public ObjectParts(string type, string name)
+        public ObjectPartsInfo(string type, string name)
         {
             ObjectType = type;
             ObjectName = name;
             Parts = new List<ObjectPart>();
         }
 
-        public ObjectParts(string type, string name, List<ObjectPart> parts) : this(type, name)
+        public ObjectPartsInfo(string type, string name, List<ObjectPart> parts) : this(type, name)
         {
             Parts = parts;
         }
 
-        public ObjectParts() : this("Default", "Default") { }
+        public ObjectPartsInfo() : this("Default", "Default") { }
 
         public ObjectPart this[string name]
         {
