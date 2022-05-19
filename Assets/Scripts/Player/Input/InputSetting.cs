@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System;
 using UnityEngine;
 using XPlayer.Input.Keyboard;
 using XPlayer.Input.Mouse;
@@ -8,7 +6,7 @@ using XPlayer.Input.Mouse;
 namespace XPlayer.Input.InputSetting
 {
     [CreateAssetMenu(fileName = "NewInputSetting", menuName = "XInput/InputSetting")]
-    [Serializable]
+    [System.Serializable]
     public class InputSetting : ScriptableObject
     {
         public string InputSettingName;

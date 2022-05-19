@@ -69,10 +69,10 @@ namespace XPlayer.Input.InputSetting
             unassignedKeyColor = Color.grey;
             assignedKeyColor = Color.cyan;
 
-            UpdateAttribute();
+            updateAttribute();
         }
 
-        private void UpdateAttribute()
+        private void updateAttribute()
         {
             keyCodeInputSetting = new Dictionary<KeyCode, List<string>>();
             foreach (KeyboardInputGroup keyboardInputGroup in inputSetting.KeyboardInputSetting)
@@ -108,7 +108,7 @@ namespace XPlayer.Input.InputSetting
 
             if (GUI.changed)
             {
-                UpdateAttribute();
+                updateAttribute();
             }
         }
 
