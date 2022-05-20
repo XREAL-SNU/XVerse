@@ -17,9 +17,9 @@ namespace XAppearance
         public GameObject GetObjectByPath(string path, GameObject target)
         {
             GameObject obj = target;
-            if (GameObject.Find(path) != null)
+            if (target.transform.Find(path) != null)
             {
-                obj = GameObject.Find(path);
+                obj = target.transform.Find(path).gameObject;
             }
             return obj;
         }
@@ -32,12 +32,12 @@ namespace XAppearance
                 obj = obj.transform.parent.gameObject;
                 path += "/" + obj.name;
             }
-            if (path.Split("/").Length > 0)
+            if (path.Split("/").Length > 1)
             {
                 string[] strings = path.Split("/");
-                for(int i = strings.Length - 1; i >= 0; i--)
+                for(int i = strings.Length - 2; i >= 0; i--)
                 {
-                    if(i == strings.Length - 1) { path = strings[i]; }
+                    if(i == strings.Length - 2) { path = strings[i]; }
                     else { path += "/" + strings[i]; }
                 }
             }
