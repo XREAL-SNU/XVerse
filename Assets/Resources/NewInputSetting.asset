@@ -13,5 +13,38 @@ MonoBehaviour:
   m_Name: NewInputSetting
   m_EditorClassIdentifier: 
   InputSettingName: Default
-  KeyboardInputSetting: []
-  MouseInputSetting: []
+  KeyboardInputSetting:
+  - InputGroupName: Movement
+    Inputs:
+    - InputName: Front
+      inputKeyName: 0
+      inputKeyType: 0
+    - InputName: Back
+      inputKeyName: 2
+      inputKeyType: 0
+    - InputName: Left
+      inputKeyName: 1
+      inputKeyType: 0
+    - InputName: Right
+      inputKeyName: 3
+      inputKeyType: 0
+    - InputName: Jump
+      inputKeyName: 10
+      inputKeyType: 0
+  - InputGroupName: New (2)
+    Inputs: []
+  - InputGroupName: New (3)
+    Inputs: []
+  - InputGroupName: New (3)
+    Inputs: []
+  MouseInputSetting:
+  - InputGroupName: Camera
+    Inputs:
+    - InputName: 
+      inputMouseName: 0
+      inputMouseType: 0
+    - InputName: 
+      inputMouseName: 0
+      inputMouseType: 0
+  - InputGroupName: New (2)
+    Inputs: []

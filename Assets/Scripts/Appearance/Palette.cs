@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 namespace XPalette
 {
     [CreateAssetMenu(fileName = "NewPalette", menuName = "XAppearance/ColorPalette")]
-    [Serializable]
+    [System.Serializable]
     public class XColorPalette : ScriptableObject
     {
         public string PaletteName;

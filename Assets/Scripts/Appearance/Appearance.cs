@@ -11,8 +11,10 @@ namespace XAppearance
     public class Appearance : MonoBehaviour
     {
         public ObjectPartsInfo objectPartsInfo;
-        public List<GameObject> objectParts = new List<GameObject>();
-        public static string objectParts_Prop_Name => nameof(objectPartsInfo);
+        public List<GameObject> matchedGameObjects = new List<GameObject>();
+        public static string objectPartsInfo_Prop_Name => nameof(objectPartsInfo);
+        public static string matchedGameObjects_Prop_Name => nameof(matchedGameObjects);
+
 
         public GameObject GetObjectByPath(string path, GameObject target)
         {
@@ -43,5 +45,17 @@ namespace XAppearance
             }
             return path;
         }
+
+        public string[] GetPaths(GameObject obj)
+        {
+            List<string> paths = new List<string>();
+            Transform[] allchildren = GetComponentsInChildren<Transform>();
+            foreach(Transform child in allchildren)
+            {
+                paths.Add(GetPathByObject(child.gameObject));
+            }
+            return paths.ToArray();
+        }
+
     }
 }

@@ -66,6 +66,7 @@ namespace XPalette
         {
             palette.ColorSet[index].ColorName = EditorGUI.TextField(new Rect(rect.x, rect.y + 5, rect.width, lineHeight), $"Color {index}", palette.ColorSet[index].ColorName);
 
+            
             EditorGUI.BeginChangeCheck();
             color[index] = EditorGUI.ColorField(new Rect(rect.x, rect.y + lineSpace + 5, rect.width - 100, lineHeight), color[index]);
             if (EditorGUI.EndChangeCheck())
@@ -77,6 +78,7 @@ namespace XPalette
             }
 
             showFade[index].target = EditorGUI.ToggleLeft(new Rect(rect.x + rect.width - 90, rect.y + lineSpace + 5, 100, lineHeight), "Show detail", showFade[index].target);
+
             if (EditorGUILayout.BeginFadeGroup(showFade[index].faded))
             {
                 EditorGUI.BeginChangeCheck();

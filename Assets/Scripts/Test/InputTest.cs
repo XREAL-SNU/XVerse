@@ -13,6 +13,10 @@ public class InputTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            Debug.Log(XInput.Instance.PlayerInputSetting.InputSettingName);
+        }
         if (XInput.Instance.KeyInput("Front"))
         {
             Debug.Log("go front");

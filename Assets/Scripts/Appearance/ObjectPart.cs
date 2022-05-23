@@ -10,6 +10,9 @@ namespace XAppearance.Property
         public string PartName;
         public string PartPath;
         public ObjectPartProperty Property;
+        public static string PartName_Prop_Name => nameof(PartName);
+        public static string PartPath_Prop_Name => nameof(PartPath);
+        public static string Property_Prop_Name => nameof(Property);
 
         public ObjectPart(string name, string path)
         {

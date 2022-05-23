@@ -6,6 +6,7 @@ using XEditor.CustomSearchWindow;
 using XPlayer.Input.InputSetting;
 using UnityEditor.Experimental.GraphView;
 using System;
+using System.IO;
 
 namespace XPlayer.Input.InputManager
 {
@@ -15,6 +16,7 @@ namespace XPlayer.Input.InputManager
     {
         XInput xInput;
         SerializedProperty inputSetting;
+        Editor editor;
 
         [MenuItem("Assets/Open XInput")]
         public static void OpenInspector()
@@ -31,14 +33,17 @@ namespace XPlayer.Input.InputManager
         public override void OnInspectorGUI()
         {
             GUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("Input Setting", GUILayout.Width(100));
+            EditorGUILayout.LabelField("Player Input Setting", GUILayout.Width(150));
             
-            if (GUILayout.Button($"{xInput.PlayerInputSetting.InputSettingName}", EditorStyles.popup))
+            if (GUILayout.Button($"{Path.GetFileName(AssetDatabase.GetAssetPath(xInput.PlayerInputSetting))}", EditorStyles.popup))
             {
                 SearchWindow.Open(new SearchWindowContext(GUIUtility.GUIToScreenPoint(Event.current.mousePosition)), new ObjectSearchProvider(typeof(InputSetting.InputSetting), inputSetting));
             }
 
             GUILayout.EndHorizontal();
+
+            editor = Editor.CreateEditor(xInput.PlayerInputSetting);
+            editor.OnInspectorGUI();
         }
     }
 }

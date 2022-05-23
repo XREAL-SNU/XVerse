@@ -19,6 +19,8 @@ namespace XPlayer.Input.Mouse
     {
         public MouseInputName inputMouseName;
         public MouseInputType inputMouseType;
+        public static string InputMouseType_Prop_Value => nameof(inputMouseName);
+        public static string InputMouseName_Prop_Value => nameof(inputMouseType);
 
         public bool IsInput
         {
@@ -85,6 +87,7 @@ namespace XPlayer.Input.Mouse
 
         public MouseInputGroup()
         {
+            InputGroupName = "New (1)";
             Inputs = new List<MouseInput>();
         }
 

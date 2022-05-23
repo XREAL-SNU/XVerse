@@ -19,6 +19,8 @@ namespace XPlayer.Input.Keyboard
     {
         public KeyboardInputName inputKeyName;
         public KeyboardInputType inputKeyType;
+        public static string InputKeyName_Prop_Name => nameof(inputKeyName);
+        public static string InputKeyType_Prop_Name => nameof(inputKeyType);
 
         public bool IsInput
         {
@@ -92,6 +94,7 @@ namespace XPlayer.Input.Keyboard
 
         public KeyboardInputGroup()
         {
+            InputGroupName = "New (1)";
             Inputs = new List<KeyboardInput>();
         }
 

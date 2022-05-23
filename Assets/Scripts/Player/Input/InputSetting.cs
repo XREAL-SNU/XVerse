@@ -12,6 +12,8 @@ namespace XPlayer.Input.InputSetting
         public string InputSettingName;
         public List<KeyboardInputGroup> KeyboardInputSetting;
         public List<MouseInputGroup> MouseInputSetting;
+        public static string KeyboardInputSetting_Prop_Name => nameof(KeyboardInputSetting);
+        public static string MouseInputSetting_Prop_Name => nameof(MouseInputSetting);
 
         public InputSetting(string name, List<KeyboardInputGroup> keySets, List<MouseInputGroup> mouseSets)
         {
@@ -23,7 +25,9 @@ namespace XPlayer.Input.InputSetting
         {
             InputSettingName = "Default";
             KeyboardInputSetting = new List<KeyboardInputGroup>();
+            KeyboardInputSetting.Add(new KeyboardInputGroup());
             MouseInputSetting = new List<MouseInputGroup>();
+            MouseInputSetting.Add(new MouseInputGroup());
         }
 
         public void CopyFrom(InputSetting inputSetting)

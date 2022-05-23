@@ -24,6 +24,12 @@ namespace XPlayer.Input.InputManager
             {
                 if (_instance != null)
                 {
+                    if(_instance.PlayerInputSetting == null)
+                    {
+                        _instance.PlayerInputSetting = ScriptableObject.CreateInstance<InputSetting.InputSetting>();
+                        AssetDatabase.AddObjectToAsset(_instance.PlayerInputSetting, SettingFilePath);
+                        AssetDatabase.ImportAsset(SettingFilePath);
+                    }
                     return _instance;
                 }
                 // if _instance is null and UISetting.asset exist in Resources folder, you get UISetting
@@ -46,7 +52,10 @@ namespace XPlayer.Input.InputManager
                     if (_instance == null)
                     {
                         _instance = CreateInstance<XInput>();
+                        _instance.PlayerInputSetting = ScriptableObject.CreateInstance<InputSetting.InputSetting>();
+                        AssetDatabase.AddObjectToAsset(_instance.PlayerInputSetting, SettingFilePath);
                         AssetDatabase.CreateAsset(_instance, SettingFilePath);
+                        AssetDatabase.ImportAsset(SettingFilePath);
                     }
                 }
 #endif
@@ -84,21 +93,25 @@ namespace XPlayer.Input.InputManager
 
         public bool KeyInput(string name)
         {
+            if (GetKey(name) == null) return false;
             return GetKey(name).IsInput;
         }
 
         public bool KeyInput(string group, string key)
         {
+            if (GetKeyGroup(group) == null || GetKeyGroup(group).GetInput(name) == null) return false;
             return GetKeyGroup(group).GetInput(key).IsInput;
         }
 
         public bool MouseInput(string name)
         {
+            if (GetMouse(name) == null) return false;
             return GetMouse(name).IsInput;
         }
 
         public bool MouseInput(string group, string mouse)
         {
+            if (GetMouseGroup(group) == null || GetMouseGroup(group).GetInput(name) == null) return false;
             return GetMouseGroup(group).GetInput(mouse).IsInput;
         }
 

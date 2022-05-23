@@ -10,6 +10,8 @@ namespace XAppearance.Property
         public string ObjectType;
         public string ObjectName;
         public List<ObjectPart> Parts;
+        public static string ObjectType_Prop_Name => nameof(ObjectType);
+        public static string ObjectName_Prop_Name => nameof(ObjectName);
         public static string Parts_Prop_Name => nameof(Parts);
 
         public ObjectPartsInfo(string type, string name)
