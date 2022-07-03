@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class AvatarFaceButton : MonoBehaviour
 {
+    /*
     // Reference in Editor
     [SerializeField] Text  ButtonText;
     [SerializeField] Image ButtonImage;
@@ -43,4 +44,5 @@ public class AvatarFaceButton : MonoBehaviour
         Selected = false;
         _buttonBorder.color = Color.white;
     }
+    */
 }

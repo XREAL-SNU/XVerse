@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class AvatarFaceManagement : MonoBehaviour
 {
+    /*
     // This needs to be setup in Editor
     // To get favorites data, access it by first referencing this script and:
     //      {Reference of this Script}.GetFavButton({index of button (0 ~ 4)}).GetButtonImageAsSprite();
@@ -35,7 +36,7 @@ public class AvatarFaceManagement : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             EmojiFavorites.GetChild(i).gameObject.GetComponent<Image>().sprite = userSprite[index];
-        }*/
+        }//*
 
         if (EmojiList.childCount != _avatarFaceList.Count) Debug.Log("Number of Child does not match number of Images");
 
@@ -140,4 +141,5 @@ public class AvatarFaceManagement : MonoBehaviour
         s_avatarTextureList = _avatarTextureList;
         s_favList = _favList;
     }
+    */
 }
