@@ -24,12 +24,11 @@ namespace XPlayer.Input.InputManager
             {
                 if (_instance != null)
                 {
-                    if(_instance.PlayerInputSetting == null)
+                    if(_instance.PlayerInputSettings == null)
                     {
-                        _instance.PlayerInputSetting = ScriptableObject.CreateInstance<InputSetting.InputSetting>();
-                        AssetDatabase.AddObjectToAsset(_instance.PlayerInputSetting, SettingFilePath);
-                        AssetDatabase.ImportAsset(SettingFilePath);
+                        _instance.PlayerInputSettings = new List<InputSetting.InputSetting>();
                     }
+                    _instance.PresentIndex = 0;
                     return _instance;
                 }
                 // if _instance is null and UISetting.asset exist in Resources folder, you get UISetting
@@ -52,10 +51,12 @@ namespace XPlayer.Input.InputManager
                     if (_instance == null)
                     {
                         _instance = CreateInstance<XInput>();
-                        _instance.PlayerInputSetting = ScriptableObject.CreateInstance<InputSetting.InputSetting>();
-                        AssetDatabase.AddObjectToAsset(_instance.PlayerInputSetting, SettingFilePath);
+                        /*_instance.PlayerInputSetting = ScriptableObject.CreateInstance<InputSetting.InputSetting>();
+                        AssetDatabase.AddObjectToAsset(_instance.PlayerInputSetting, SettingFilePath);*/
                         AssetDatabase.CreateAsset(_instance, SettingFilePath);
                         AssetDatabase.ImportAsset(SettingFilePath);
+                        _instance.PlayerInputSettings = new List<InputSetting.InputSetting>();
+                        _instance.PresentIndex = 0;
                     }
                 }
 #endif
@@ -64,13 +65,42 @@ namespace XPlayer.Input.InputManager
             }
         }
 
-        public InputSetting.InputSetting PlayerInputSetting;
+        public List<InputSetting.InputSetting> PlayerInputSettings;
+        public int PresentIndex;
+        public static string PlayerInputSettings_Prop_Name => nameof(PlayerInputSettings);
+        public static string PresentIndex_Prop_Name => nameof(PresentIndex);
+
+        public InputSetting.InputSetting this[int index]
+        {
+            get
+            {
+                if(index < 0 || index >= PlayerInputSettings.Count) { return null; }
+                else { return PlayerInputSettings[index]; }
+            }
+        }
+        
+        public void SetInputSetting(int index)
+        {
+            PresentIndex = index;
+            this[index].InputUnLockAll();
+        }
 
         public void SetInputSetting(string name)
         {
-            InputUnLockAll();
+            bool isValid = false;
+            for (int i = 0; i < PlayerInputSettings.Count; i++)
+            {
+                if (PlayerInputSettings[i].InputSettingName.Equals(name))
+                {
+                    PresentIndex = i;
+                    isValid = true;
+                    break;
+                }
+            }
+            if(isValid) { this[PresentIndex].InputUnLockAll(); }
         }
 
+        /*
         public KeyboardInput GetKey(string name)
         {
             return PlayerInputSetting.GetInput<KeyboardInputGroup, KeyboardInput>(name, PlayerInputSetting.KeyboardInputSetting);
@@ -211,5 +241,6 @@ namespace XPlayer.Input.InputManager
         {
             PlayerInputSetting.InputLockOnly<MouseInputGroup, MouseInput>(name, PlayerInputSetting.MouseInputSetting, isGroupName);
         }
+        */
     }
 }

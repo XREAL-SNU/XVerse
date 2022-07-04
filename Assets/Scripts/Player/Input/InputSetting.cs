@@ -5,13 +5,14 @@ using XPlayer.Input.Mouse;
 
 namespace XPlayer.Input.InputSetting
 {
-    [CreateAssetMenu(fileName = "NewInputSetting", menuName = "XInput/InputSetting")]
+    //[CreateAssetMenu(fileName = "NewInputSetting", menuName = "XInput/InputSetting")]
     [System.Serializable]
-    public class InputSetting : ScriptableObject
+    public class InputSetting
     {
         public string InputSettingName;
         public List<KeyboardInputGroup> KeyboardInputSetting;
         public List<MouseInputGroup> MouseInputSetting;
+        public static string InputSettingName_Prop_Name => nameof(InputSettingName);
         public static string KeyboardInputSetting_Prop_Name => nameof(KeyboardInputSetting);
         public static string MouseInputSetting_Prop_Name => nameof(MouseInputSetting);
 

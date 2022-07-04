@@ -6,6 +6,7 @@ using System;
 
 public class InputTest : MonoBehaviour
 {
+    /*
     private void Start()
     {
         XInput.Instance.SetInputSetting("");
@@ -33,5 +34,5 @@ public class InputTest : MonoBehaviour
             Debug.Log("go back");
             XInput.Instance.KeyInputLockOnly("Jump", false);
         }
-    }
+    }*/
 }

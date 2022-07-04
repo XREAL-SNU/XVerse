@@ -19,8 +19,8 @@ namespace XPlayer.Input.Mouse
     {
         public MouseInputName inputMouseName;
         public MouseInputType inputMouseType;
-        public static string InputMouseType_Prop_Value => nameof(inputMouseName);
-        public static string InputMouseName_Prop_Value => nameof(inputMouseType);
+        public static string InputMouseType_Prop_Name => nameof(inputMouseName);
+        public static string InputMouseName_Prop_Name => nameof(inputMouseType);
 
         public bool IsInput
         {

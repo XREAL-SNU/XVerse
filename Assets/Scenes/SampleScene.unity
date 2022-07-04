@@ -205,12 +205,12 @@ MonoBehaviour:
     ObjectName: Default
     Parts:
     - PartName: GameObject
-      PartPath: GameObject
+      PartPath: Part1
       Property:
         ColorPalette: {fileID: 11400000, guid: 8c64a6b00e141bb4390059a5ecfd6060, type: 2}
         Pick: 0
   matchedGameObjects:
-  - {fileID: 147136618}
+  - {fileID: 385147516}
 --- !u!1 &385147516
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,4 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcfd054ccbeb8ac4f97c779123ee609a, type: 3}
   m_Name: XInput
   m_EditorClassIdentifier: 
-  PlayerInputSetting: {fileID: 11400000, guid: 27574c523968c614e9efe31fcc1f2fbd, type: 2}
+  PlayerInputSettings:
+  - InputSettingName: XVerse-lobby
+    KeyboardInputSetting:
+    - InputGroupName: New (1)
+      Inputs: []
+    MouseInputSetting:
+    - InputGroupName: New (1)
+      Inputs: []
+  - InputSettingName: Default
+    KeyboardInputSetting:
+    - InputGroupName: New (1)
+      Inputs: []
+    MouseInputSetting:
+    - InputGroupName: New (1)
+      Inputs: []
+  - InputSettingName: blabal
+    KeyboardInputSetting:
+    - InputGroupName: New (1)
+      Inputs: []
+    MouseInputSetting:
+    - InputGroupName: New (1)
+      Inputs: []
+  PresentIndex: 0
