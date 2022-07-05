@@ -5,7 +5,6 @@ using XPlayer.Input.Mouse;
 
 namespace XPlayer.Input.InputSetting
 {
-    //[CreateAssetMenu(fileName = "NewInputSetting", menuName = "XInput/InputSetting")]
     [System.Serializable]
     public class InputSetting
     {
@@ -24,11 +23,8 @@ namespace XPlayer.Input.InputSetting
         }
         public InputSetting()
         {
-            InputSettingName = "Default";
             KeyboardInputSetting = new List<KeyboardInputGroup>();
-            KeyboardInputSetting.Add(new KeyboardInputGroup());
             MouseInputSetting = new List<MouseInputGroup>();
-            MouseInputSetting.Add(new MouseInputGroup());
         }
 
         public void CopyFrom(InputSetting inputSetting)

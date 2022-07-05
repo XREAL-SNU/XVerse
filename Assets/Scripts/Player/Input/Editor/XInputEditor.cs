@@ -1,13 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEditor;
 using UnityEditorInternal;
-using XEditor.CustomSearchWindow;
 using XPlayer.Input.InputSetting;
-using UnityEditor.Experimental.GraphView;
-using System;
-using System.IO;
 
 namespace XPlayer.Input.InputManager
 {
@@ -17,8 +12,6 @@ namespace XPlayer.Input.InputManager
     {
         private static float lineHeight = EditorGUIUtility.singleLineHeight;
 
-        private XInput xInput;
-        private SerializedProperty inputSettings, index;
         private ReorderableList inputSettingList;
 
         [MenuItem("Assets/Open XInput")]
@@ -29,40 +22,32 @@ namespace XPlayer.Input.InputManager
 
         private void OnEnable()
         {
-            xInput = target as XInput;
-            inputSettings = serializedObject.FindProperty(XInput.PlayerInputSettings_Prop_Name);
-            index = serializedObject.FindProperty(XInput.PresentIndex_Prop_Name);
-
-            inputSettingList = new ReorderableList(serializedObject, inputSettings);
+            inputSettingList = new ReorderableList(XInput.Instance.PlayerInputSettings, typeof(InputSetting.InputSetting));
+            
             inputSettingList.drawHeaderCallback = (rect) =>
             {
                 EditorGUI.LabelField(rect, "Player Input Settings");
             };
             inputSettingList.drawElementCallback = (rect, index, isActive, isFocused) =>
             {
-                var element = inputSettings.GetArrayElementAtIndex(index).FindPropertyRelative(InputSetting.InputSetting.InputSettingName_Prop_Name);
                 float length = EditorGUIUtility.currentViewWidth - 65;
                 rect.height = lineHeight;
                 rect.y += 3;
                 EditorGUI.BeginDisabledGroup(true);
-                EditorGUI.PropertyField(new Rect(rect.x, rect.y, length-rect.x-5, rect.height), element, new GUIContent());
+                EditorGUI.TextField(new Rect(rect.x, rect.y, length-rect.x-5, rect.height), XInput.Instance.PlayerInputSettings[index].InputSettingName);
                 EditorGUI.EndDisabledGroup();
-                if(GUI.Button(new Rect(length, rect.y, 55, rect.height), "Open")) { InputSettingWindow.ShowWindow(xInput[index]); }
+                if(GUI.Button(new Rect(length, rect.y, 55, rect.height), "Open")) { InputSettingWindow.ShowWindow(index); }
             };
             inputSettingList.onAddCallback = (list) =>
             {
-                inputSettings.arraySize++;
-                list.index = inputSettings.arraySize - 1;
-                var element = inputSettings.GetArrayElementAtIndex(list.index).FindPropertyRelative(InputSetting.InputSetting.InputSettingName_Prop_Name);
-                element.stringValue = String.Format("New Input Setting ({0})", list.index + 1);
+                XInput.Instance.PlayerInputSettings.Add(new InputSetting.InputSetting());
+                list.index = XInput.Instance.PlayerInputSettings.Count - 1;
+                XInput.Instance.PlayerInputSettings[list.index].InputSettingName = String.Format("New Input Setting ({0})", list.index + 1);
             };
             inputSettingList.onRemoveCallback = (list) =>
             {
-                inputSettings.DeleteArrayElementAtIndex(list.index);
-                if (list.index >= inputSettings.arraySize)
-                {
-                    list.index = inputSettings.arraySize - 1;
-                }
+                XInput.Instance.PlayerInputSettings.RemoveAt(list.index);
+                if (list.index >= XInput.Instance.PlayerInputSettings.Count) { list.index = XInput.Instance.PlayerInputSettings.Count - 1; }
             };
         }
 
@@ -71,20 +56,10 @@ namespace XPlayer.Input.InputManager
             GUILayout.Label("Player Input Setting", EditorStyles.boldLabel);
             GUILayout.Space(5);
             EditorGUI.BeginDisabledGroup(true);
-            xInput.PresentIndex = EditorGUILayout.IntField("Index", xInput.PresentIndex);
+            XInput.Instance.PresentIndex = EditorGUILayout.IntField("Index", XInput.Instance.PresentIndex);
             EditorGUI.EndDisabledGroup();
             GUILayout.Space(5);
-
             inputSettingList.DoLayoutList();
-
-            serializedObject.Update();
-
-            /*
-            if (GUILayout.Button($"{Path.GetFileName(AssetDatabase.GetAssetPath(xInput.PlayerInputSetting))}", EditorStyles.popup))
-            {
-                SearchWindow.Open(new SearchWindowContext(GUIUtility.GUIToScreenPoint(Event.current.mousePosition)), new ObjectSearchProvider(typeof(InputSetting.InputSetting), inputSetting));
-            }
-            */
         }
     }
 }

@@ -13,25 +13,16 @@ MonoBehaviour:
   m_Name: XInput
   m_EditorClassIdentifier: 
   PlayerInputSettings:
-  - InputSettingName: XVerse-lobby
+  - InputSettingName: New Input Setting (1)
+    KeyboardInputSetting: []
+    MouseInputSetting: []
+  - InputSettingName: New Input Setting (2)
     KeyboardInputSetting:
-    - InputGroupName: New (1)
+    - InputGroupName: New Input Setting (1)
       Inputs: []
-    MouseInputSetting:
-    - InputGroupName: New (1)
+    - InputGroupName: New Input Setting (2)
       Inputs: []
-  - InputSettingName: Default
-    KeyboardInputSetting:
-    - InputGroupName: New (1)
+    - InputGroupName: New Input Setting (3)
       Inputs: []
-    MouseInputSetting:
-    - InputGroupName: New (1)
-      Inputs: []
-  - InputSettingName: blabal
-    KeyboardInputSetting:
-    - InputGroupName: New (1)
-      Inputs: []
-    MouseInputSetting:
-    - InputGroupName: New (1)
-      Inputs: []
+    MouseInputSetting: []
   PresentIndex: 0

@@ -6,7 +6,12 @@ namespace XPlayer.Input.Keyboard
 {
     public enum KeyboardInputName
     {
-        W, A, S, D, T, Alpha1, Alpha2, Alpha3, Alpha4, G, Space, U
+        BackQuote, Alpha1, Alpha2, Alpha3, Alpha4, Alpha5,
+        Alpha6, Alpha7, Alpha8, Alpha9, Alpha0, Minus, Plus, Backspace,
+        Tab, Q, W, E, R, T, Y, U, I, O, P, LeftBracket, RightBracket, Backslash,
+        CapsLock, A, S, D, F, G, H, J, K, L, Semicolon, Quote, Return,
+        LeftShift, Z, X, C, V, B, N, M, Comma, Period, Slash, RightShift,
+        LeftControl, LeftCommand, Space, UpArrow, LeftArrow, DownArrow, RightArrow
     };
 
     public enum KeyboardInputType
@@ -55,6 +60,8 @@ namespace XPlayer.Input.Keyboard
         public KeyboardInput()
         {
             isActiveInput = true;
+            inputKeyName = KeyboardInputName.W;
+            inputKeyType = KeyboardInputType.Key;
         }
 
         public KeyCode ToKeyCode()
@@ -82,7 +89,7 @@ namespace XPlayer.Input.Keyboard
     [Serializable]
     public class KeyboardInputGroup : PlayerInputGroup<KeyboardInput>
     {
-        public KeyboardInputGroup(string name)
+        public KeyboardInputGroup(string name) : this()
         {
             InputGroupName = name;
         }
@@ -94,7 +101,6 @@ namespace XPlayer.Input.Keyboard
 
         public KeyboardInputGroup()
         {
-            InputGroupName = "New (1)";
             Inputs = new List<KeyboardInput>();
         }
 

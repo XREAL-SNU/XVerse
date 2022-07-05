@@ -11,7 +11,7 @@ namespace XPlayer.Input.Mouse
 
     public enum MouseInputType
     {
-        MouseDown, Mouse, MouseUp
+        MouseDown, Mouse, MouseUp, Drag
     }
 
     [Serializable]
@@ -34,6 +34,8 @@ namespace XPlayer.Input.Mouse
                         return isActiveInput && UnityEngine.Input.GetMouseButtonUp((int)inputMouseName);
                     case MouseInputType.MouseDown:
                         return isActiveInput && UnityEngine.Input.GetMouseButtonDown((int)inputMouseName);
+                    case MouseInputType.Drag:
+                        return isActiveInput;
                     default:
                         Debug.LogError("MouseInputType Error");
                         return false;
@@ -52,6 +54,8 @@ namespace XPlayer.Input.Mouse
         public MouseInput()
         {
             isActiveInput = true;
+            inputMouseName = MouseInputName.Left;
+            inputMouseType = MouseInputType.Mouse;
         }
 
         public void SetMouseInputName(MouseInputName keyName)
@@ -75,7 +79,7 @@ namespace XPlayer.Input.Mouse
     [Serializable]
     public class MouseInputGroup : PlayerInputGroup<MouseInput>
     {
-        public MouseInputGroup(string name)
+        public MouseInputGroup(string name) : this()
         {
             InputGroupName = name;
         }
@@ -87,7 +91,6 @@ namespace XPlayer.Input.Mouse
 
         public MouseInputGroup()
         {
-            InputGroupName = "New (1)";
             Inputs = new List<MouseInput>();
         }
 
