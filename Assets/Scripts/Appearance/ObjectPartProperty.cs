@@ -8,7 +8,7 @@ namespace XAppearance.Property
     [System.Serializable]
     public class ObjectPartProperty
     {
-        public XColorPalette ColorPalette = null;
+        public XColorPalette ColorPalette;
         public int Pick;
 
         public static string ColorPalette_Prop_Name => nameof(ColorPalette);
@@ -34,7 +34,7 @@ namespace XAppearance.Property
 
         public ObjectPartProperty()
         {
-            ColorPalette = null; //Resources.Load<XColorPalette>("Assets/Resources/Default/DefaultPalette.asset");
+            //ColorPalette = null; //Resources.Load<XColorPalette>("Assets/Resources/Default/DefaultPalette.asset");
             Pick = 0;
         }
 

@@ -11,9 +11,6 @@ namespace XPlayer.Input.InputSetting
         public string InputSettingName;
         public List<KeyboardInputGroup> KeyboardInputSetting;
         public List<MouseInputGroup> MouseInputSetting;
-        public static string InputSettingName_Prop_Name => nameof(InputSettingName);
-        public static string KeyboardInputSetting_Prop_Name => nameof(KeyboardInputSetting);
-        public static string MouseInputSetting_Prop_Name => nameof(MouseInputSetting);
 
         public InputSetting(string name, List<KeyboardInputGroup> keySets, List<MouseInputGroup> mouseSets)
         {

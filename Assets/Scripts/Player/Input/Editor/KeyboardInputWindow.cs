@@ -14,7 +14,6 @@ namespace XPlayer.Input.InputSetting
         private static float offset = 5;
         private static int keyboardCellSize = 30;
         private static Color unassignedKeyColor = Color.grey, assignedKeyColor = Color.cyan;
-        private static string defaultToolTip = "None";
 
         private int setIndex, groupIndex, inputIndex;
         private Dictionary<KeyCode, List<string>> keyCodeInputSetting;
@@ -38,7 +37,7 @@ namespace XPlayer.Input.InputSetting
             {
                 foreach (KeyboardInput keyboardInput in keyboardInputGroup.Inputs)
                 {
-                    KeyCode inputKeyName = (KeyCode)Enum.Parse(typeof(KeyCode), keyboardInput.inputKeyName.ToString());
+                    KeyCode inputKeyName = (KeyCode)Enum.Parse(typeof(KeyCode), keyboardInput.InputKeyName.ToString());
                     string inputKeyInfo = keyboardInputGroup.InputGroupName + " / " + keyboardInput.InputName;
                     if (!window.keyCodeInputSetting.ContainsKey(inputKeyName))
                     {
@@ -88,11 +87,8 @@ namespace XPlayer.Input.InputSetting
 
         private string tooltipString(List<string> info)
         {
-            if (info == null || info.Count == 0)
-            {
-                return defaultToolTip;
-            }
             string str = "";
+            if (info == null || info.Count == 0) { return str; }
             for (int i = 0; i < info.Count; i++)
             {
                 str += info[i].ToString();
@@ -135,7 +131,7 @@ namespace XPlayer.Input.InputSetting
                         GUI.backgroundColor = assignedKeyColor;
                         if (GUI.Button(new Rect(x, y, keyboardCellSize * keyboardSize[i][j], keyboardCellSize), content))
                         {
-                            XInput.Instance[setIndex].KeyboardInputSetting[groupIndex].Inputs[inputIndex].inputKeyName = (KeyboardInputName)Enum.Parse(typeof(KeyboardInputName), keyboardCode[i][j].ToString());
+                            XInput.Instance[setIndex].KeyboardInputSetting[groupIndex].Inputs[inputIndex].InputKeyName = (KeyboardInputName)Enum.Parse(typeof(KeyboardInputName), keyboardCode[i][j].ToString());
                             this.Close();
                         }
                     }
@@ -145,7 +141,7 @@ namespace XPlayer.Input.InputSetting
                         GUI.backgroundColor = unassignedKeyColor;
                         if (GUI.Button(new Rect(x, y, keyboardCellSize * keyboardSize[i][j], keyboardCellSize), content))
                         {
-                            XInput.Instance[setIndex].KeyboardInputSetting[groupIndex].Inputs[inputIndex].inputKeyName = (KeyboardInputName)Enum.Parse(typeof(KeyboardInputName), keyboardCode[i][j].ToString());
+                            XInput.Instance[setIndex].KeyboardInputSetting[groupIndex].Inputs[inputIndex].InputKeyName = (KeyboardInputName)Enum.Parse(typeof(KeyboardInputName), keyboardCode[i][j].ToString());
                             this.Close();
                         }
                     }

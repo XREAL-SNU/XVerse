@@ -7,9 +7,8 @@ namespace XPlayer.Input
     public class PlayerInput
     {
         public string InputName;
-        protected bool isActiveInput = true;
+        protected bool isActiveInput;
         public Action InputAction;
-        public static string InputName_Prop_Name => nameof(InputName);
         public void InputLock() { isActiveInput = false; }
         public void InputUnLock() { isActiveInput = true; }
 
@@ -20,9 +19,7 @@ namespace XPlayer.Input
     public class PlayerInputGroup<T> where T : PlayerInput
     {
         public string InputGroupName;
-        public List<T> Inputs = new List<T>();
-        public static string InputGroupName_Prop_Name => nameof(InputGroupName);
-        public static string Inputs_Prop_Name => nameof(Inputs);
+        public List<T> Inputs;
 
         public T GetInput(string inputName)
         {

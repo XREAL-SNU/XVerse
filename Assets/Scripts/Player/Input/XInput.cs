@@ -67,8 +67,6 @@ namespace XPlayer.Input.InputManager
 
         public List<InputSetting.InputSetting> PlayerInputSettings;
         public int PresentIndex;
-        public static string PlayerInputSettings_Prop_Name => nameof(PlayerInputSettings);
-        public static string PresentIndex_Prop_Name => nameof(PresentIndex);
 
         public InputSetting.InputSetting this[int index]
         {
@@ -98,27 +96,28 @@ namespace XPlayer.Input.InputManager
                 }
             }
             if(isValid) { this[PresentIndex].InputUnLockAll(); }
+            else { Debug.LogError($"Input Setting with name {name} doesn't exist."); }
         }
 
-        /*
+        
         public KeyboardInput GetKey(string name)
         {
-            return PlayerInputSetting.GetInput<KeyboardInputGroup, KeyboardInput>(name, PlayerInputSetting.KeyboardInputSetting);
+            return this[PresentIndex].GetInput<KeyboardInputGroup, KeyboardInput>(name, this[PresentIndex].KeyboardInputSetting);
         }
 
         public MouseInput GetMouse(string name)
         {
-            return PlayerInputSetting.GetInput<MouseInputGroup, MouseInput>(name, PlayerInputSetting.MouseInputSetting);
+            return this[PresentIndex].GetInput<MouseInputGroup, MouseInput>(name, this[PresentIndex].MouseInputSetting);
         }
 
         public KeyboardInputGroup GetKeyGroup(string name)
         {
-            return PlayerInputSetting.GetInputGroup<KeyboardInputGroup, KeyboardInput>(name, PlayerInputSetting.KeyboardInputSetting);
+            return this[PresentIndex].GetInputGroup<KeyboardInputGroup, KeyboardInput>(name, this[PresentIndex].KeyboardInputSetting);
         }
 
         public MouseInputGroup GetMouseGroup(string name)
         {
-            return PlayerInputSetting.GetInputGroup<MouseInputGroup, MouseInput>(name, PlayerInputSetting.MouseInputSetting);
+            return this[PresentIndex].GetInputGroup<MouseInputGroup, MouseInput>(name, this[PresentIndex].MouseInputSetting);
         }
 
         public bool KeyInput(string name)
@@ -147,18 +146,18 @@ namespace XPlayer.Input.InputManager
 
         public void InputLockAll()
         {
-            PlayerInputSetting.InputLockAll();
+            this[PresentIndex].InputLockAll();
         }
 
         public void KeyInputLockAll(string name = null)
         {
             if (name == null)
             {
-                PlayerInputSetting.InputLockAll<KeyboardInputGroup, KeyboardInput>(PlayerInputSetting.KeyboardInputSetting);
+                this[PresentIndex].InputLockAll<KeyboardInputGroup, KeyboardInput>(this[PresentIndex].KeyboardInputSetting);
             }
             else
             {
-                PlayerInputSetting.InputLockAll<KeyboardInputGroup, KeyboardInput>(name, PlayerInputSetting.KeyboardInputSetting);
+                this[PresentIndex].InputLockAll<KeyboardInputGroup, KeyboardInput>(name, this[PresentIndex].KeyboardInputSetting);
             }
         }
 
@@ -166,28 +165,28 @@ namespace XPlayer.Input.InputManager
         {
             if (name == null)
             {
-                PlayerInputSetting.InputLockAll<MouseInputGroup, MouseInput>(PlayerInputSetting.MouseInputSetting);
+                this[PresentIndex].InputLockAll<MouseInputGroup, MouseInput>(this[PresentIndex].MouseInputSetting);
             }
             else
             {
-                PlayerInputSetting.InputLockAll<MouseInputGroup, MouseInput>(name, PlayerInputSetting.MouseInputSetting);
+                this[PresentIndex].InputLockAll<MouseInputGroup, MouseInput>(name, this[PresentIndex].MouseInputSetting);
             }
         }
 
         public void InputUnLockAll()
         {
-            PlayerInputSetting.InputUnLockAll();
+            this[PresentIndex].InputUnLockAll();
         }
 
         public void KeyInputUnLockAll(string name = null)
         {
             if (name == null)
             {
-                PlayerInputSetting.InputUnLockAll<KeyboardInputGroup, KeyboardInput>(PlayerInputSetting.KeyboardInputSetting);
+                this[PresentIndex].InputUnLockAll<KeyboardInputGroup, KeyboardInput>(this[PresentIndex].KeyboardInputSetting);
             }
             else
             {
-                PlayerInputSetting.InputUnLockAll<KeyboardInputGroup, KeyboardInput>(name, PlayerInputSetting.KeyboardInputSetting);
+                this[PresentIndex].InputUnLockAll<KeyboardInputGroup, KeyboardInput>(name, this[PresentIndex].KeyboardInputSetting);
             }
         }
 
@@ -195,52 +194,51 @@ namespace XPlayer.Input.InputManager
         {
             if (name == null)
             {
-                PlayerInputSetting.InputUnLockAll<MouseInputGroup, MouseInput>(PlayerInputSetting.MouseInputSetting);
+                this[PresentIndex].InputUnLockAll<MouseInputGroup, MouseInput>(this[PresentIndex].MouseInputSetting);
             }
             else
             {
-                PlayerInputSetting.InputUnLockAll<MouseInputGroup, MouseInput>(name, PlayerInputSetting.MouseInputSetting);
+                this[PresentIndex].InputUnLockAll<MouseInputGroup, MouseInput>(name, this[PresentIndex].MouseInputSetting);
             }
         }
 
         public void KeyInputUnLockOnly(string groupName, string inputName)
         {
-            PlayerInputSetting.InputUnLockOnly<KeyboardInputGroup, KeyboardInput>(groupName, inputName, PlayerInputSetting.KeyboardInputSetting);
+            this[PresentIndex].InputUnLockOnly<KeyboardInputGroup, KeyboardInput>(groupName, inputName, this[PresentIndex].KeyboardInputSetting);
         }
 
         public void KeyInputUnLockOnly(string name, bool isGroupName = true)
         {
-            PlayerInputSetting.InputUnLockOnly<KeyboardInputGroup, KeyboardInput>(name, PlayerInputSetting.KeyboardInputSetting, isGroupName);
+            this[PresentIndex].InputUnLockOnly<KeyboardInputGroup, KeyboardInput>(name, this[PresentIndex].KeyboardInputSetting, isGroupName);
         }
 
         public void MouseInputUnLockOnly(string groupName, string inputName)
         {
-            PlayerInputSetting.InputUnLockOnly<MouseInputGroup, MouseInput>(groupName, inputName, PlayerInputSetting.MouseInputSetting);
+            this[PresentIndex].InputUnLockOnly<MouseInputGroup, MouseInput>(groupName, inputName, this[PresentIndex].MouseInputSetting);
         }
 
         public void MouseInputUnLockOnly(string name, bool isGroupName = true)
         {
-            PlayerInputSetting.InputUnLockOnly<MouseInputGroup, MouseInput>(name, PlayerInputSetting.MouseInputSetting, isGroupName);
+            this[PresentIndex].InputUnLockOnly<MouseInputGroup, MouseInput>(name, this[PresentIndex].MouseInputSetting, isGroupName);
         }
         public void KeyInputLockOnly(string groupName, string inputName)
         {
-            PlayerInputSetting.InputLockOnly<KeyboardInputGroup, KeyboardInput>(groupName, inputName, PlayerInputSetting.KeyboardInputSetting);
+            this[PresentIndex].InputLockOnly<KeyboardInputGroup, KeyboardInput>(groupName, inputName, this[PresentIndex].KeyboardInputSetting);
         }
 
         public void KeyInputLockOnly(string name, bool isGroupName = true)
         {
-            PlayerInputSetting.InputLockOnly<KeyboardInputGroup, KeyboardInput>(name, PlayerInputSetting.KeyboardInputSetting, isGroupName);
+            this[PresentIndex].InputLockOnly<KeyboardInputGroup, KeyboardInput>(name, this[PresentIndex].KeyboardInputSetting, isGroupName);
         }
 
         public void MouseInputLockOnly(string groupName, string inputName)
         {
-            PlayerInputSetting.InputLockOnly<MouseInputGroup, MouseInput>(groupName, inputName, PlayerInputSetting.MouseInputSetting);
+            this[PresentIndex].InputLockOnly<MouseInputGroup, MouseInput>(groupName, inputName, this[PresentIndex].MouseInputSetting);
         }
 
         public void MouseInputLockOnly(string name, bool isGroupName = true)
         {
-            PlayerInputSetting.InputLockOnly<MouseInputGroup, MouseInput>(name, PlayerInputSetting.MouseInputSetting, isGroupName);
+            this[PresentIndex].InputLockOnly<MouseInputGroup, MouseInput>(name, this[PresentIndex].MouseInputSetting, isGroupName);
         }
-        */
     }
 }

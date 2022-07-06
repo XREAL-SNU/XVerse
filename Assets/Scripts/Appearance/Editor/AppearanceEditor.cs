@@ -63,7 +63,7 @@ namespace XAppearance
                     partPath.stringValue = appearance.GetPathByObject(matchedGameObject.objectReferenceValue as GameObject);
                 }
                 
-                EditorGUI.PropertyField(new Rect(rect.x, rect.y + lineSpace * 2 + 5, rect.width, lineHeight), colorPalette, new GUIContent("Color Palette"));
+                EditorGUI.PropertyField(new Rect(rect.x, rect.y + lineSpace * 2 + 5, rect.width, lineHeight), colorPalette);
 
                 /*
                  * if (GUI.Button(new Rect(rect.x, rect.y + lineSpace * 2 + 5, rect.width, lineHeight), $"{Path.GetFileName(AssetDatabase.GetAssetPath(colorPalette.objectReferenceValue))}", EditorStyles.popup))
@@ -100,7 +100,8 @@ namespace XAppearance
 
         public override void OnInspectorGUI()
         {
-            //base.OnInspectorGUI();
+            base.OnInspectorGUI();
+            /*
             GUILayout.Space(5);
             EditorGUILayout.PropertyField(objectPartsInfo.FindPropertyRelative(ObjectPartsInfo.ObjectType_Prop_Name), new GUIContent("Obaject Type"));
             GUILayout.Space(5);
@@ -109,7 +110,7 @@ namespace XAppearance
 
             serializedObject.Update();
             reorderableList.DoLayoutList();
-            serializedObject.ApplyModifiedProperties();
+            serializedObject.ApplyModifiedProperties();*/
         }
 
         /*

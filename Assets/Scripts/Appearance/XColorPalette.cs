@@ -8,7 +8,7 @@ namespace XPalette
     public class XColorPalette : ScriptableObject
     {
         public string PaletteName;
-        public List<XColor> ColorSet;
+        public List<XColor> ColorSet = new List<XColor>();
 
         public static string ColorSet_Prop_Name => nameof(ColorSet);
 
@@ -25,6 +25,7 @@ namespace XPalette
             }
         }
 
+        /*
         public XColorPalette(string name)
         {
             PaletteName = name;
@@ -41,6 +42,6 @@ namespace XPalette
         {
             PaletteName = "Default";
             ColorSet = new List<XColor>();
-        }
+        }*/
     }
 }

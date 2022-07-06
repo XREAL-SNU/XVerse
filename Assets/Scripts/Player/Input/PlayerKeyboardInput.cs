@@ -22,16 +22,14 @@ namespace XPlayer.Input.Keyboard
     [Serializable]
     public class KeyboardInput : PlayerInput
     {
-        public KeyboardInputName inputKeyName;
-        public KeyboardInputType inputKeyType;
-        public static string InputKeyName_Prop_Name => nameof(inputKeyName);
-        public static string InputKeyType_Prop_Name => nameof(inputKeyType);
+        public KeyboardInputName InputKeyName;
+        public KeyboardInputType InputKeyType;
 
         public bool IsInput
         {
             get
             {
-                switch (inputKeyType)
+                switch (InputKeyType)
                 {
                     case KeyboardInputType.Key:
                         return isActiveInput && UnityEngine.Input.GetKey(ToKeyCode());
@@ -50,30 +48,30 @@ namespace XPlayer.Input.Keyboard
         {
             InputName = name;
             isActiveInput = true;
-            if (Enum.IsDefined(typeof(KeyCode), inputKeyName.ToString()))
+            if (Enum.IsDefined(typeof(KeyCode), InputKeyName.ToString()))
             {
-                inputKeyName = keyName;
-                inputKeyType = keyType;
+                InputKeyName = keyName;
+                InputKeyType = keyType;
             }
         }
 
         public KeyboardInput()
         {
             isActiveInput = true;
-            inputKeyName = KeyboardInputName.W;
-            inputKeyType = KeyboardInputType.Key;
+            InputKeyName = KeyboardInputName.W;
+            InputKeyType = KeyboardInputType.Key;
         }
 
         public KeyCode ToKeyCode()
         {
-            return (KeyCode)Enum.Parse(typeof(KeyCode), inputKeyName.ToString());
+            return (KeyCode)Enum.Parse(typeof(KeyCode), InputKeyName.ToString());
         }
 
         public void SetKeyboardInputName(KeyboardInputName keyName)
         {
-            if (Enum.IsDefined(typeof(KeyCode), inputKeyName.ToString()))
+            if (Enum.IsDefined(typeof(KeyCode), InputKeyName.ToString()))
             {
-                inputKeyName = keyName;
+                InputKeyName = keyName;
             }
         }
 
@@ -81,8 +79,8 @@ namespace XPlayer.Input.Keyboard
         {
             if (keyboard == null) { return; }
             InputName = keyboard.InputName;
-            inputKeyName = keyboard.inputKeyName;
-            inputKeyType = keyboard.inputKeyType;
+            InputKeyName = keyboard.InputKeyName;
+            InputKeyType = keyboard.InputKeyType;
         }
     }
 

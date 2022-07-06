@@ -69,8 +69,8 @@ namespace XPlayer.Input.InputSetting
                 rect.height = lineHeight;
                 rect.y += 3;
                 XInput.Instance[window.setIndex].KeyboardInputSetting[window.getKeyboardIndex()].Inputs[index].InputName = EditorGUI.TextField(new Rect(rect.position.x, rect.position.y, 160, rect.height), XInput.Instance[window.setIndex].KeyboardInputSetting[window.getKeyboardIndex()].Inputs[index].InputName);
-                XInput.Instance[window.setIndex].KeyboardInputSetting[window.getKeyboardIndex()].Inputs[index].inputKeyType = (KeyboardInputType)EditorGUI.EnumPopup(new Rect(rect.position.x + 165, rect.position.y, 100, rect.height), XInput.Instance[window.setIndex].KeyboardInputSetting[window.getKeyboardIndex()].Inputs[index].inputKeyType);
-                if (GUI.Button(new Rect(rect.position.x + 270, rect.position.y, 85, rect.height), XInput.Instance[window.setIndex].KeyboardInputSetting[window.getKeyboardIndex()].Inputs[index].inputKeyName.ToString())) { KeyboardInputWindow.ShowWindow(window.setIndex, window.keyboardGroupList.index, index, ref window.isOpen, ref window.inputWindow); }
+                XInput.Instance[window.setIndex].KeyboardInputSetting[window.getKeyboardIndex()].Inputs[index].InputKeyType = (KeyboardInputType)EditorGUI.EnumPopup(new Rect(rect.position.x + 165, rect.position.y, 100, rect.height), XInput.Instance[window.setIndex].KeyboardInputSetting[window.getKeyboardIndex()].Inputs[index].InputKeyType);
+                if (GUI.Button(new Rect(rect.position.x + 270, rect.position.y, 85, rect.height), XInput.Instance[window.setIndex].KeyboardInputSetting[window.getKeyboardIndex()].Inputs[index].InputKeyName.ToString())) { KeyboardInputWindow.ShowWindow(window.setIndex, window.keyboardGroupList.index, index, ref window.isOpen, ref window.inputWindow); }
             }; 
             window.keyboardInputList.onAddCallback = (list) =>
             {
@@ -133,13 +133,13 @@ namespace XPlayer.Input.InputSetting
                 rect.y += 3;
                 XInput.Instance[window.setIndex].MouseInputSetting[window.getMouseIndex()].Inputs[index].InputName = EditorGUI.TextField(new Rect(rect.position.x, rect.position.y, 160, rect.height), XInput.Instance[window.setIndex].MouseInputSetting[window.getMouseIndex()].Inputs[index].InputName);
                 EditorGUI.BeginChangeCheck();
-                XInput.Instance[window.setIndex].MouseInputSetting[window.getMouseIndex()].Inputs[index].inputMouseType = (MouseInputType)EditorGUI.EnumPopup(new Rect(rect.position.x + 165, rect.position.y, 100, rect.height), XInput.Instance[window.setIndex].MouseInputSetting[window.getMouseIndex()].Inputs[index].inputMouseType);
-                if (EditorGUI.EndChangeCheck() && XInput.Instance[window.setIndex].MouseInputSetting[window.getMouseIndex()].Inputs[index].inputMouseType == MouseInputType.Drag)
+                XInput.Instance[window.setIndex].MouseInputSetting[window.getMouseIndex()].Inputs[index].InputMouseType = (MouseInputType)EditorGUI.EnumPopup(new Rect(rect.position.x + 165, rect.position.y, 100, rect.height), XInput.Instance[window.setIndex].MouseInputSetting[window.getMouseIndex()].Inputs[index].InputMouseType);
+                if (EditorGUI.EndChangeCheck() && XInput.Instance[window.setIndex].MouseInputSetting[window.getMouseIndex()].Inputs[index].InputMouseType == MouseInputType.Drag)
                 {
-                    XInput.Instance[window.setIndex].MouseInputSetting[window.getMouseIndex()].Inputs[index].inputMouseName = MouseInputName.Wheel;
+                    XInput.Instance[window.setIndex].MouseInputSetting[window.getMouseIndex()].Inputs[index].InputMouseName = MouseInputName.Wheel;
                 }
-                EditorGUI.BeginDisabledGroup(XInput.Instance[window.setIndex].MouseInputSetting[window.getMouseIndex()].Inputs[index].inputMouseType == MouseInputType.Drag);
-                XInput.Instance[window.setIndex].MouseInputSetting[window.getMouseIndex()].Inputs[index].inputMouseName = (MouseInputName)EditorGUI.EnumPopup(new Rect(rect.position.x + 270, rect.position.y, 85, rect.height), XInput.Instance[window.setIndex].MouseInputSetting[window.getMouseIndex()].Inputs[index].inputMouseName);
+                EditorGUI.BeginDisabledGroup(XInput.Instance[window.setIndex].MouseInputSetting[window.getMouseIndex()].Inputs[index].InputMouseType == MouseInputType.Drag);
+                XInput.Instance[window.setIndex].MouseInputSetting[window.getMouseIndex()].Inputs[index].InputMouseName = (MouseInputName)EditorGUI.EnumPopup(new Rect(rect.position.x + 270, rect.position.y, 85, rect.height), XInput.Instance[window.setIndex].MouseInputSetting[window.getMouseIndex()].Inputs[index].InputMouseName);
                 EditorGUI.EndDisabledGroup();
                 //if (GUI.Button(new Rect(rect.position.x + 270, rect.position.y, 85, rect.height), XInput.Instance[window.setIndex].MouseInputSetting[window.getMouseIndex()].Inputs[index].inputMouseName.ToString())) { MouseInputWindow.ShowWindow(window.setIndex, window.mouseGroupList.index, index, ref window.isOpen, ref window.inputWindow); }
             };

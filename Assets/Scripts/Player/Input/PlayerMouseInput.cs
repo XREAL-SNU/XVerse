@@ -17,23 +17,21 @@ namespace XPlayer.Input.Mouse
     [Serializable]
     public class MouseInput : PlayerInput
     {
-        public MouseInputName inputMouseName;
-        public MouseInputType inputMouseType;
-        public static string InputMouseType_Prop_Name => nameof(inputMouseName);
-        public static string InputMouseName_Prop_Name => nameof(inputMouseType);
+        public MouseInputName InputMouseName;
+        public MouseInputType InputMouseType;
 
         public bool IsInput
         {
             get
             {
-                switch (inputMouseType)
+                switch (InputMouseType)
                 {
                     case MouseInputType.Mouse:
-                        return isActiveInput && UnityEngine.Input.GetMouseButton((int)inputMouseName);
+                        return isActiveInput && UnityEngine.Input.GetMouseButton((int)InputMouseName);
                     case MouseInputType.MouseUp:
-                        return isActiveInput && UnityEngine.Input.GetMouseButtonUp((int)inputMouseName);
+                        return isActiveInput && UnityEngine.Input.GetMouseButtonUp((int)InputMouseName);
                     case MouseInputType.MouseDown:
-                        return isActiveInput && UnityEngine.Input.GetMouseButtonDown((int)inputMouseName);
+                        return isActiveInput && UnityEngine.Input.GetMouseButtonDown((int)InputMouseName);
                     case MouseInputType.Drag:
                         return isActiveInput;
                     default:
@@ -47,22 +45,22 @@ namespace XPlayer.Input.Mouse
         {
             InputName = name;
             isActiveInput = true;
-            inputMouseName = mouseName;
-            inputMouseType = mouseType;
+            InputMouseName = mouseName;
+            InputMouseType = mouseType;
         }
 
         public MouseInput()
         {
             isActiveInput = true;
-            inputMouseName = MouseInputName.Left;
-            inputMouseType = MouseInputType.Mouse;
+            InputMouseName = MouseInputName.Left;
+            InputMouseType = MouseInputType.Mouse;
         }
 
         public void SetMouseInputName(MouseInputName keyName)
         {
-            if (Enum.IsDefined(typeof(KeyCode), inputMouseName.ToString()))
+            if (Enum.IsDefined(typeof(KeyCode), InputMouseName.ToString()))
             {
-                inputMouseName = keyName;
+                InputMouseName = keyName;
             }
         }
 
@@ -70,8 +68,8 @@ namespace XPlayer.Input.Mouse
         {
             if (mouse == null) { return; }
             InputName = mouse.InputName;
-            inputMouseName = mouse.inputMouseName;
-            inputMouseType = mouse.inputMouseType;
+            InputMouseName = mouse.InputMouseName;
+            InputMouseType = mouse.InputMouseType;
         }
 
     }
