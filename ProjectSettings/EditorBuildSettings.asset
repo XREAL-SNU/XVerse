@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/LobbyNET.unity
+    guid: 48ef8e20df8c0914791dd8722b1f00c6
   m_configObjects: {}
