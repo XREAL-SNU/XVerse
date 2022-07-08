@@ -21,31 +21,16 @@ public class XVerseNetworkManager : MonoBehaviour
         else
         {
             StatusLabels();
-
-            SubmitNewPosition();
         }
 
         GUILayout.EndArea();
     }
 
-    static void SubmitNewPosition()
+    private void Awake()
     {
-        if (GUILayout.Button(NetworkManager.Singleton.IsServer ? "Move" : "Request Position Change"))
-        {
-            if (NetworkManager.Singleton.IsServer && !NetworkManager.Singleton.IsClient)
-            {
-                foreach (ulong uid in NetworkManager.Singleton.ConnectedClientsIds)
-                    NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(uid).GetComponent<NETPlayerMove>().Move();
-            }
-            else
-            {
-                var playerObject = NetworkManager.Singleton.SpawnManager.GetLocalPlayerObject();
-                var player = playerObject.GetComponent<NETPlayerMove>();
-                player.Move();
-            }
-        }
+        // display cursor.
+        Cursor.visible = true;
     }
-
     static void StartButtons()
     {
         if (GUILayout.Button("Host")) NetworkManager.Singleton.StartHost();
@@ -58,8 +43,6 @@ public class XVerseNetworkManager : MonoBehaviour
         var mode = NetworkManager.Singleton.IsHost ?
             "Host" : NetworkManager.Singleton.IsServer ? "Server" : "Client";
 
-        GUILayout.Label("Transport: " +
-            NetworkManager.Singleton.NetworkConfig.NetworkTransport.GetType().Name);
-        GUILayout.Label("Mode: " + mode);
+        GUILayout.Label("People in the game: " + PlayerManager.Instance.PlayersInGame);
     }
 }

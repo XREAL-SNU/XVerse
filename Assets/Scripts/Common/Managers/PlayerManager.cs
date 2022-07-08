@@ -2,108 +2,55 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour//PunCallbacks
+public class PlayerManager : NetworkBehaviour
 {
-    /*
-    // singleton, dont destroy on load
-    static PlayerManager _playerManager;
-    public static PlayerManager Players
-    {
-        get => _playerManager;
-    }
-
-
-    void Awake()
-    {
-        if (_playerManager == null)
-        {
-            _playerManager = this;
-            PlayerInfo = new PlayerInfo();
-            
-        }
-        else if (_playerManager != this)
-        {
-            Destroy(gameObject);
-        }
-
-        DontDestroyOnLoad(gameObject);
-    }
-
-    // local avatar gameObject and its properties
-
-    GameObject _localPlayerGo;
-    AvatarAppearanceNew _appearance;
-    public PlayerInfo PlayerInfo;
-
-    public GameObject LocalPlayerGo
-    {
-        get => _localPlayerGo;
-        set
-        {
-            if(value is null)
-            {
-                Debug.Log("PlayerManager/trying to set null value to LocalPlayerGo");
-            }
-            _localPlayerGo = value;
-            if(_appearance is null)
-            {
-                _appearance = new AvatarAppearanceNew(AvatarAppearanceNew.XRealSpaceSuitAppearanceDescriptor, _localPlayerGo);
-            }
-            else
-            {
-                _appearance.Apply(_localPlayerGo);
-            }
-        }
-    }
-
-    public AvatarAppearanceNew LocalAvatarAppearance
-    {
-
+    protected static PlayerManager _instance;
+    public static PlayerManager Instance{
         get
         {
-            if(_appearance is null)
+            return _instance;
+        }
+    }
+
+    private void Awake()
+    {
+        if (_instance is null) _instance = this;
+    }
+
+    
+
+    private NetworkVariable<int> playersInGame = new NetworkVariable<int>(readPerm: NetworkVariableReadPermission.Everyone);
+    public int PlayersInGame
+    {
+        get
+        {
+            return playersInGame.Value;
+        }
+    }
+
+    private void Start()
+    {
+        NetworkManager.Singleton.OnClientConnectedCallback += (id) =>
+        {
+            if (IsServer)
             {
-                Debug.LogError("PlayerManager/ LocalAvatarAppearence is null");
+                Debug.Log($"{id} connected");
+                playersInGame.Value++;
             }
-            return _appearance;
-        }
-    }
+        };
 
-
-
-    // event handler
-
-    public enum PlayerEvent
-    {
-        JoinedRoom,
-        LeftRoom
-    }
-    public static void BindEvent(GameObject go, Action action, PlayerEvent evtype)
-    {
-        PlayerEventHandler evt = go.GetComponent<PlayerEventHandler>();
-        if (evt is null)
+        NetworkManager.Singleton.OnClientDisconnectCallback += (id) =>
         {
-            evt = go.AddComponent<PlayerEventHandler>();
-        }
+            if (IsServer)
+            {
+                Debug.Log($"{id} disconnected");
+                playersInGame.Value--;
+            }
+        };
 
-        switch (evtype)
-        {
-            case PlayerEvent.JoinedRoom:
-                evt.OnJoinedRoomHandler += action;
-                break;
-            case PlayerEvent.LeftRoom:
-                evt.OnLeftRoomHandler += action;
-                break;
-        }
+
     }
-
-    public override void OnJoinedRoom()
-    {
-        PlayerInfo.ActorNr = PhotonNetwork.LocalPlayer.ActorNumber;
-        PlayerInfo.PlayerName = PhotonNetwork.LocalPlayer.NickName;
-    }*/
-
-
 }
