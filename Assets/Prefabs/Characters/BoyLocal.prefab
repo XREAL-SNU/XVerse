@@ -100,9 +100,10 @@ GameObject:
   - component: {fileID: 13600000}
   - component: {fileID: 4462625446952785288}
   - component: {fileID: 11490152}
-  - component: {fileID: 11474940}
   - component: {fileID: 459708182487960584}
   - component: {fileID: 6192209203288330425}
+  - component: {fileID: 5277531964347489105}
+  - component: {fileID: 2593547386076287384}
   m_Layer: 0
   m_Name: BoyLocal
   m_TagString: Player
@@ -217,23 +218,6 @@ MonoBehaviour:
     MaximumX: 90
     smooth: 0
     smoothTime: 5
---- !u!114 &11474940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0df83d9cfe88c7641b20a46c5228418c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ControllerCamera: {fileID: 0}
-  speed: 5
-  cameraDistance: 0
-  movingTurnSpeed: 180
-  smoothing: 5
 --- !u!114 &459708182487960584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,7 +230,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dd7c72bb79ad6544aae08d975251222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ButtonsHolder: {fileID: 0}
   FirstPersonCamActivator: {fileID: 0}
   OrthographicCamActivator: {fileID: 0}
 --- !u!114 &6192209203288330425
@@ -261,6 +244,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eef0beee68157f4683aff4a00eb0e1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5277531964347489105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 1
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
+  SyncScaleX: 1
+  SyncScaleY: 1
+  SyncScaleZ: 1
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  InLocalSpace: 0
+  Interpolate: 1
+--- !u!114 &2593547386076287384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8459750fbbcd4e243abbadf1e129b925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ControllerCamera: {fileID: 0}
+  speed: 5
+  cameraDistance: 0
+  movingTurnSpeed: 360
+  smoothing: 5
 --- !u!1 &178648
 GameObject:
   m_ObjectHideFlags: 0
