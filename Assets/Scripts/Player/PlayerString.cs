@@ -20,9 +20,9 @@ public class PlayerString : NetworkBehaviour
         }
 
     }
-    public void SetOverlay()
+    private void SetOverlay()
     {
-        Text localPlayerOverlay = transform.Find("PlayerInfo").GetComponent<Text>();
+        Text localPlayerOverlay = GetComponentInChildren<Text>();
         localPlayerOverlay.text = playerName.Value;
     }
 

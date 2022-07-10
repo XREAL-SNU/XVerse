@@ -20,7 +20,7 @@ namespace ExitGames.Demos.DemoPunVoice {
         protected override void Init() {
             base.Init();
             // should be default camera
-            this.ControllerCamera = Camera.main;
+            this.ControllerCamera = GameObject.Find("OrthographicCamera").GetComponent<Camera>();
         }
 
         protected override void SetCamera() {

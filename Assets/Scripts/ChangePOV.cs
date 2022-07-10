@@ -8,15 +8,15 @@
 // <author>developer@photonengine.com</author>
 // ----------------------------------------------------------------------------
 
-#pragma warning disable 0649 // Field is never assigned to, and will always have its default value
 
 namespace ExitGames.Demos.DemoPunVoice {
     using System.Collections.Generic;
+    using Unity.Netcode;
     using UnityEngine;
     using UnityEngine.UI;
 
 
-    public class ChangePOV : MonoBehaviour {
+    public class ChangePOV : NetworkBehaviour {
         private FirstPersonController firstPersonController;
         private OrthographicController orthographicController;
 
@@ -24,8 +24,6 @@ namespace ExitGames.Demos.DemoPunVoice {
         private Quaternion initialCameraRotation;
         private Camera defaultCamera;
 
-        [SerializeField]
-        private GameObject ButtonsHolder;
 
         [SerializeField]
         private Button FirstPersonCamActivator;
@@ -40,7 +38,8 @@ namespace ExitGames.Demos.DemoPunVoice {
 
 
         private void Start() {
-            this.defaultCamera = Camera.main;
+            if (!IsOwner) return;
+            this.defaultCamera = GameObject.Find("OrthographicCamera").GetComponent<Camera>();
             this.initialCameraPosition = new Vector3(this.defaultCamera.transform.position.x,
                 this.defaultCamera.transform.position.y, this.defaultCamera.transform.position.z);
             this.initialCameraRotation = new Quaternion(this.defaultCamera.transform.rotation.x,
@@ -57,12 +56,16 @@ namespace ExitGames.Demos.DemoPunVoice {
             this.OrthographicCamActivator.onClick.AddListener(this.OrthographicMode);
         }
 
+        public override void OnNetworkSpawn()
+        {
+            if (IsOwner) OnCharacterInstantiated(gameObject);
+        }
+
         private void OnCharacterInstantiated(GameObject character)
         {
             this.firstPersonController = character.GetComponent<FirstPersonController>();
             this.firstPersonController.enabled = false;
             this.orthographicController = character.GetComponent<OrthographicController>();
-            this.ButtonsHolder.SetActive(true);
         }
 
         private void FirstPersonMode() {
@@ -75,8 +78,12 @@ namespace ExitGames.Demos.DemoPunVoice {
         }
 
         private void ToggleMode(BaseController controller) {
-            if (controller == null) { return; } // this should not happen, throw error
+            if (controller == null) {
+                Debug.LogError("Null controler");
+                return; 
+            } // this should not happen, throw error
             if (controller.ControllerCamera == null) { return; } // probably game is closing 
+            Debug.Log("Switching camera: " + controller.name);
             controller.ControllerCamera.gameObject.SetActive(true);
             controller.enabled = true;
             this.FirstPersonCamActivator.interactable = !(controller == this.firstPersonController);

@@ -22,7 +22,7 @@ public class PlayerManager : NetworkBehaviour
 
     
 
-    private NetworkVariable<int> playersInGame = new NetworkVariable<int>(readPerm: NetworkVariableReadPermission.Everyone);
+    private NetworkVariable<int> playersInGame = new NetworkVariable<int>();
     public int PlayersInGame
     {
         get
@@ -37,7 +37,7 @@ public class PlayerManager : NetworkBehaviour
         {
             if (IsServer)
             {
-                Debug.Log($"{id} connected");
+                Debug.Log($"PlayerManager: {id} connected");
                 playersInGame.Value++;
             }
         };

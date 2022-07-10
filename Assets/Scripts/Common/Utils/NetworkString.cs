@@ -1,11 +1,11 @@
-﻿using Unity.Collections;
+using Unity.Collections;
 using Unity.Netcode;
 
 public struct NetworkString : INetworkSerializable
 {
     private FixedString32Bytes info;
 
-    void INetworkSerializable.NetworkSerialize<T>(BufferSerializer<T> serializer)
+    public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
     {
         serializer.SerializeValue(ref info);
     }

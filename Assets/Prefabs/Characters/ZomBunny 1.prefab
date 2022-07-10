@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 13600000}
   - component: {fileID: 11437228}
   - component: {fileID: 11412288}
+  - component: {fileID: -3911186736558243402}
   m_Layer: 0
   m_Name: ZomBunny 1
   m_TagString: Player
@@ -216,6 +217,18 @@ MonoBehaviour:
   cameraDistance: 0
   movingTurnSpeed: 180
   smoothing: 5
+--- !u!114 &-3911186736558243402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eef0beee68157f4683aff4a00eb0e1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &121440
 GameObject:
   m_ObjectHideFlags: 0

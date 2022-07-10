@@ -7,6 +7,7 @@ using UnityEngine;
 
 /// <summary>
 /// Netcode for Gameobjects
+/// This code lets you select between starting as a server, a client, or a host.
 /// https://docs-multiplayer.unity3d.com/netcode/current/tutorials/helloworld/helloworldintro
 /// </summary>
 public class XVerseNetworkManager : MonoBehaviour
@@ -43,6 +44,6 @@ public class XVerseNetworkManager : MonoBehaviour
         var mode = NetworkManager.Singleton.IsHost ?
             "Host" : NetworkManager.Singleton.IsServer ? "Server" : "Client";
 
-        GUILayout.Label("People in the game: " + PlayerManager.Instance.PlayersInGame);
+        GUILayout.Label($"Playing as {mode}. People in the game: " + PlayerManager.Instance.PlayersInGame);
     }
 }
