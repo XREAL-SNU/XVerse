@@ -16,7 +16,6 @@ public class NetThirdPersonController : NetBaseController {
 
 
     protected override void MoveClient(float h, float v) {
-        Debug.Log($"run MoveClient (h{h} v{v})");
 
         // do the heavy calculations here
         Vector3 velocity = v * speed * transform.forward;
@@ -29,7 +28,6 @@ public class NetThirdPersonController : NetBaseController {
     // based on the network variables that have been set by the RPC.
     protected override void MoveServer()
     {
-        Debug.Log($"run MoveServer(targetVel = {targetVelocity.Value})");
         // do smallest calculation here.
         rigidBody.velocity = targetVelocity.Value;
         transform.rotation *= rotationDelta.Value;
@@ -38,7 +36,6 @@ public class NetThirdPersonController : NetBaseController {
     [ServerRpc]
     protected void UpdateClientTransformServerRpc(Vector3 vel, Quaternion rotDel)
     {
-        Debug.Log($"run ServerRpc ()");
 
         // this runs inside server
         targetVelocity.Value = vel;
