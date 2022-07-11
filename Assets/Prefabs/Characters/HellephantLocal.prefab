@@ -485,11 +485,12 @@ GameObject:
   - component: {fileID: 5499234}
   - component: {fileID: 13644992}
   - component: {fileID: 11418116}
-  - component: {fileID: 11493356}
   - component: {fileID: -7207890593483963137}
   - component: {fileID: 6513982784485399150}
+  - component: {fileID: -5701354146228484662}
+  - component: {fileID: -8684661292779122543}
   m_Layer: 0
-  m_Name: Hellephant 1
+  m_Name: HellephantLocal
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -586,23 +587,6 @@ MonoBehaviour:
     MaximumX: 90
     smooth: 0
     smoothTime: 5
---- !u!114 &11493356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 153412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0df83d9cfe88c7641b20a46c5228418c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ControllerCamera: {fileID: 0}
-  speed: 5
-  cameraDistance: 0
-  movingTurnSpeed: 180
-  smoothing: 5
 --- !u!114 &-7207890593483963137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -631,6 +615,53 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!114 &-5701354146228484662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8459750fbbcd4e243abbadf1e129b925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ControllerCamera: {fileID: 0}
+  speed: 5
+  cameraDistance: 0
+  movingTurnSpeed: 360
+  targetVelocity:
+    m_InternalValue: {x: 0, y: 0, z: 0}
+  rotationDelta:
+    m_InternalValue: {x: 0, y: 0, z: 0, w: 0}
+  smoothing: 5
+--- !u!114 &-8684661292779122543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 1
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
+  SyncScaleX: 1
+  SyncScaleY: 1
+  SyncScaleZ: 1
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  InLocalSpace: 0
+  Interpolate: 1
 --- !u!1 &178154
 GameObject:
   m_ObjectHideFlags: 0

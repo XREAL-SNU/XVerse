@@ -10,7 +10,8 @@ public class NetOrthographicController : NetThirdPersonController
     protected override void Init()
     {
         base.Init();
-        ControllerCamera = GameObject.Find("OrthographicCamera").GetComponent<Camera>();
+        GameObject ControllerCameraGo = GameObject.Find("OrthographicCamera");
+        if(ControllerCameraGo) ControllerCameraGo.TryGetComponent<Camera>(out ControllerCamera);
     }
 
     protected override void SetCamera()
@@ -32,6 +33,7 @@ public class NetOrthographicController : NetThirdPersonController
 
     private void CameraFollow()
     {
+        if (!ControllerCamera) return;
         // Create a postion the camera is aiming for based on the offset from the target.
         Vector3 targetCamPos = this.transform.position + this.offset;
 

@@ -28,7 +28,12 @@ public class ChangePOV : NetworkBehaviour {
 
     private void Start() {
         if (!IsOwner) return;
-        this.defaultCamera = GameObject.Find("OrthographicCamera").GetComponent<Camera>();
+        GameObject go = GameObject.Find("OrthographicCamera");
+        if (go)
+        {
+            go.TryGetComponent<Camera>(out defaultCamera);
+        }
+        else defaultCamera = Camera.main;
         this.initialCameraPosition = new Vector3(this.defaultCamera.transform.position.x,
             this.defaultCamera.transform.position.y, this.defaultCamera.transform.position.z);
         this.initialCameraRotation = new Quaternion(this.defaultCamera.transform.rotation.x,
@@ -36,13 +41,15 @@ public class ChangePOV : NetworkBehaviour {
             this.defaultCamera.transform.rotation.w);
         //Check if we are running either in the Unity editor or in a standalone build.
 #if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEBPLAYER
-        FirstPersonCamActivator = GameObject.Find("FirstPersonBtn").GetComponent<Button>();
-        this.FirstPersonCamActivator.onClick.AddListener(this.FirstPersonMode);
+        go = GameObject.Find("FirstPersonBtn");
+        go.TryGetComponent<Button>(out FirstPersonCamActivator);
+        if(FirstPersonCamActivator) FirstPersonCamActivator.onClick.AddListener(this.FirstPersonMode);
 #else
         this.FirstPersonCamActivator.gameObject.SetActive(false);
 #endif
-        OrthographicCamActivator = GameObject.Find("OrthoBtn").GetComponent<Button>();
-        this.OrthographicCamActivator.onClick.AddListener(this.OrthographicMode);
+        go = GameObject.Find("OrthoBtn");
+        go.TryGetComponent<Button>(out OrthographicCamActivator);
+        if(OrthographicCamActivator) OrthographicCamActivator.onClick.AddListener(this.OrthographicMode);
     }
 
     public override void OnNetworkSpawn()

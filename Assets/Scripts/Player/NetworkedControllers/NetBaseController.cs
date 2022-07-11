@@ -57,8 +57,7 @@ public abstract class NetBaseController : NetworkBehaviour
 
     protected virtual void SetCamera()
     {
-        // server would not have a camera anyways.
-        if (!IsClient) return;
+        if (!ControllerCamera) return;
         this.camTrans = this.ControllerCamera.transform;
         this.camTrans.position += this.cameraDistance * this.transform.forward;
     }
@@ -68,7 +67,7 @@ public abstract class NetBaseController : NetworkBehaviour
         // Create a boolean that is true if either of the input axes is non-zero.
         bool walking = h != 0 || v != 0;
         // Tell the animator whether or not the player is walking.
-        this.animator.SetBool("IsWalking", walking);
+        if(animator) animator.SetBool("IsWalking", walking);
     }
 
     // DO NOT OVERRIDE THIS LOOP
