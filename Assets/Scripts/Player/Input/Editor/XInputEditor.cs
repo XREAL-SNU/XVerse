@@ -2,9 +2,8 @@ using System;
 using UnityEngine;
 using UnityEditor;
 using UnityEditorInternal;
-using XPlayer.Input.InputSetting;
 
-namespace XPlayer.Input.InputManager
+namespace XVerse.Player.Input
 {
 
     [CustomEditor(typeof(XInput))]
@@ -22,7 +21,7 @@ namespace XPlayer.Input.InputManager
 
         private void OnEnable()
         {
-            inputSettingList = new ReorderableList(XInput.Instance.PlayerInputSettings, typeof(InputSetting.InputSetting));
+            inputSettingList = new ReorderableList(XInput.Instance.PlayerInputSettings, typeof(InputSetting));
             
             inputSettingList.drawHeaderCallback = (rect) =>
             {
@@ -40,7 +39,7 @@ namespace XPlayer.Input.InputManager
             };
             inputSettingList.onAddCallback = (list) =>
             {
-                XInput.Instance.PlayerInputSettings.Add(new InputSetting.InputSetting());
+                XInput.Instance.PlayerInputSettings.Add(new InputSetting());
                 list.index = XInput.Instance.PlayerInputSettings.Count - 1;
                 XInput.Instance.PlayerInputSettings[list.index].InputSettingName = String.Format("New Input Setting ({0})", list.index + 1);
             };

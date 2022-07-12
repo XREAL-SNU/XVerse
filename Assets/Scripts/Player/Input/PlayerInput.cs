@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System;
 
-namespace XPlayer.Input
+namespace XVerse.Player.Input
 {
     [Serializable]
     public class PlayerInput

@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 
-namespace XPlayer.Input.Keyboard
+namespace XVerse.Player.Input
 {
     public enum KeyboardInputName
     {
@@ -20,7 +20,7 @@ namespace XPlayer.Input.Keyboard
     }
 
     [Serializable]
-    public class KeyboardInput : PlayerInput
+    public sealed class KeyboardInput : PlayerInput
     {
         public KeyboardInputName InputKeyName;
         public KeyboardInputType InputKeyType;
@@ -85,7 +85,7 @@ namespace XPlayer.Input.Keyboard
     }
 
     [Serializable]
-    public class KeyboardInputGroup : PlayerInputGroup<KeyboardInput>
+    public sealed class KeyboardInputGroup : PlayerInputGroup<KeyboardInput>
     {
         public KeyboardInputGroup(string name) : this()
         {

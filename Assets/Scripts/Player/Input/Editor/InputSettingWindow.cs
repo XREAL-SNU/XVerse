@@ -2,11 +2,8 @@ using System;
 using UnityEngine;
 using UnityEditor;
 using UnityEditorInternal;
-using XPlayer.Input.Keyboard;
-using XPlayer.Input.Mouse;
-using XPlayer.Input.InputManager;
 
-namespace XPlayer.Input.InputSetting
+namespace XVerse.Player.Input
 {
     public class InputSettingWindow : EditorWindow
     {

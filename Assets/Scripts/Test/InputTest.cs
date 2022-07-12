@@ -1,38 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using XPlayer.Input.InputManager;
 using System;
+using XVerse.Player.Input;
 
 public class InputTest : MonoBehaviour
 {
-    /*
-    private void Start()
+    private void Awake()
     {
-        XInput.Instance.SetInputSetting("");
+        XInput.Instance.SetInputSetting("XVerse Default");
     }
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            Debug.Log(XInput.Instance.PlayerInputSetting.InputSettingName);
-        }
-        if (XInput.Instance.KeyInput("Front"))
-        {
-            Debug.Log("go front");
-            XInput.Instance.InputUnLockAll();
-        }
-        
-        if (XInput.Instance.KeyInput("Jump"))
-        {
-            Debug.Log("Jump!");
-        }
-
-        if (XInput.Instance.KeyInput("Back"))
-        {
-            Debug.Log("go back");
-            XInput.Instance.KeyInputLockOnly("Jump", false);
-        }
-    }*/
+        if (XInput.Instance.KeyInput("hi")) { Debug.Log("Front"); }
+    }
 }

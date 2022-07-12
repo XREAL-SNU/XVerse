@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEditor;
-using XPlayer.Input.Keyboard;
-using XPlayer.Input.InputManager;
 
 
-namespace XPlayer.Input.InputSetting
+namespace XVerse.Player.Input
 {
     public class KeyboardInputWindow : EditorWindow
     {
@@ -52,7 +50,7 @@ namespace XPlayer.Input.InputSetting
             window.ShowUtility();
         }
 
-        private string[][] keyboardName = new string[][]
+        private static string[][] keyboardName = new string[][]
         {
             new string[]{"`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "+", "Back"},
             new string[]{"Tab", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "[", "]", "|"},
@@ -61,7 +59,7 @@ namespace XPlayer.Input.InputSetting
             new string[]{"Control", "Alt", "Space", "ก่", "ก็", "ก้", "กๆ"}
         };
 
-        private KeyCode[][] keyboardCode = new KeyCode[][]
+        private static KeyCode[][] keyboardCode = new KeyCode[][]
         {
             new KeyCode[]{KeyCode.BackQuote, KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5,
                 KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9, KeyCode.Alpha0, KeyCode.Minus, KeyCode.Plus, KeyCode.Backspace},
@@ -74,7 +72,7 @@ namespace XPlayer.Input.InputSetting
             new KeyCode[]{KeyCode.LeftControl, KeyCode.LeftCommand, KeyCode.Space, KeyCode.UpArrow, KeyCode.LeftArrow, KeyCode.DownArrow, KeyCode.RightArrow}
         };
 
-        private int[][] keyboardSize = new int[][]
+        private static int[][] keyboardSize = new int[][]
         {
             new int[]{1,1,1,1,1,1,1,1,1,1,1,1,1,2},
             new int[]{2,1,1,1,1,1,1,1,1,1,1,1,1,1},
@@ -83,7 +81,7 @@ namespace XPlayer.Input.InputSetting
             new int[]{2,2,7,1,1,1,1}
         };
 
-        private float[] offsets = new float[] { 0, 0, 1, 2, 7 };
+        private static float[] offsets = new float[] { 0, 0, 1, 2, 7 };
 
         private string tooltipString(List<string> info)
         {

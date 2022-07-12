@@ -1,12 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
-using XPlayer.Input.Keyboard;
-using XPlayer.Input.Mouse;
 
-namespace XPlayer.Input.InputSetting
+namespace XVerse.Player.Input
 {
     [System.Serializable]
-    public class InputSetting
+    public sealed class InputSetting
     {
         public string InputSettingName;
         public List<KeyboardInputGroup> KeyboardInputSetting;
@@ -55,6 +53,7 @@ namespace XPlayer.Input.InputSetting
             foreach (T t in group)
             {
                 input = t.GetInput(name);
+                if(input != null) break;
             }
             if (input == null) { Debug.LogError($"{str} with name {name} doesn't exist"); }
             return input;

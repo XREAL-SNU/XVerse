@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 
-namespace XPlayer.Input.Mouse
+namespace XVerse.Player.Input
 {
     public enum MouseInputName
     {
@@ -15,7 +15,7 @@ namespace XPlayer.Input.Mouse
     }
 
     [Serializable]
-    public class MouseInput : PlayerInput
+    public sealed class MouseInput : PlayerInput
     {
         public MouseInputName InputMouseName;
         public MouseInputType InputMouseType;
@@ -75,7 +75,7 @@ namespace XPlayer.Input.Mouse
     }
 
     [Serializable]
-    public class MouseInputGroup : PlayerInputGroup<MouseInput>
+    public sealed class MouseInputGroup : PlayerInputGroup<MouseInput>
     {
         public MouseInputGroup(string name) : this()
         {

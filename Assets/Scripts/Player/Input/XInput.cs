@@ -1,17 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using XPlayer.Input.InputSetting;
-using XPlayer.Input.Keyboard;
-using XPlayer.Input.Mouse;
 
 #if UNITY_EDITOR 
 using UnityEditor;
 #endif
 
-namespace XPlayer.Input.InputManager
+namespace XVerse.Player.Input
 {
-    public class XInput : ScriptableObject
+    public sealed class XInput : ScriptableObject
     {
         private const string SettingFileDirectory = "Assets/Resources";
         private const string SettingFilePath = "Assets/Resources/XInput.asset";
@@ -26,7 +23,7 @@ namespace XPlayer.Input.InputManager
                 {
                     if(_instance.PlayerInputSettings == null)
                     {
-                        _instance.PlayerInputSettings = new List<InputSetting.InputSetting>();
+                        _instance.PlayerInputSettings = new List<InputSetting>();
                     }
                     _instance.PresentIndex = 0;
                     return _instance;
@@ -55,7 +52,7 @@ namespace XPlayer.Input.InputManager
                         AssetDatabase.AddObjectToAsset(_instance.PlayerInputSetting, SettingFilePath);*/
                         AssetDatabase.CreateAsset(_instance, SettingFilePath);
                         AssetDatabase.ImportAsset(SettingFilePath);
-                        _instance.PlayerInputSettings = new List<InputSetting.InputSetting>();
+                        _instance.PlayerInputSettings = new List<InputSetting>();
                         _instance.PresentIndex = 0;
                     }
                 }
@@ -65,10 +62,10 @@ namespace XPlayer.Input.InputManager
             }
         }
 
-        public List<InputSetting.InputSetting> PlayerInputSettings;
+        public List<InputSetting> PlayerInputSettings;
         public int PresentIndex;
 
-        public InputSetting.InputSetting this[int index]
+        public InputSetting this[int index]
         {
             get
             {
@@ -100,24 +97,44 @@ namespace XPlayer.Input.InputManager
         }
 
         
-        public KeyboardInput GetKey(string name)
+        private KeyboardInput GetKey(string name)
         {
             return this[PresentIndex].GetInput<KeyboardInputGroup, KeyboardInput>(name, this[PresentIndex].KeyboardInputSetting);
         }
 
-        public MouseInput GetMouse(string name)
+        private MouseInput GetMouse(string name)
         {
             return this[PresentIndex].GetInput<MouseInputGroup, MouseInput>(name, this[PresentIndex].MouseInputSetting);
         }
 
-        public KeyboardInputGroup GetKeyGroup(string name)
+        private KeyboardInputGroup GetKeyGroup(string name)
         {
             return this[PresentIndex].GetInputGroup<KeyboardInputGroup, KeyboardInput>(name, this[PresentIndex].KeyboardInputSetting);
         }
 
-        public MouseInputGroup GetMouseGroup(string name)
+        private MouseInputGroup GetMouseGroup(string name)
         {
             return this[PresentIndex].GetInputGroup<MouseInputGroup, MouseInput>(name, this[PresentIndex].MouseInputSetting);
+        }
+
+        public void ChangeKeyInput(string name, KeyboardInputName input)
+        {
+            if(GetKey(name) != null) { GetKey(name).InputKeyName = input; }
+        }
+
+        public void ChangeKeyInput(string group, string key, KeyboardInputName input)
+        {
+            if(GetKeyGroup(group) != null && GetKeyGroup(group).GetInput(key) != null) { GetKeyGroup(group).GetInput(key).InputKeyName = input; }
+        }
+
+        public void ChangeMouseInput(string name, MouseInputName input)
+        {
+            if (GetMouse(name) != null) { GetMouse(name).InputMouseName = input; }
+        }
+
+        public void ChangeMouseInput(string group, string mouse, MouseInputName input)
+        {
+            if (GetMouseGroup(group) != null && GetMouseGroup(group).GetInput(mouse) != null) { GetMouseGroup(group).GetInput(mouse).InputMouseName = input; }
         }
 
         public bool KeyInput(string name)
@@ -128,7 +145,7 @@ namespace XPlayer.Input.InputManager
 
         public bool KeyInput(string group, string key)
         {
-            if (GetKeyGroup(group) == null || GetKeyGroup(group).GetInput(name) == null) return false;
+            if (GetKeyGroup(group) == null || GetKeyGroup(group).GetInput(key) == null) return false;
             return GetKeyGroup(group).GetInput(key).IsInput;
         }
 
@@ -140,7 +157,7 @@ namespace XPlayer.Input.InputManager
 
         public bool MouseInput(string group, string mouse)
         {
-            if (GetMouseGroup(group) == null || GetMouseGroup(group).GetInput(name) == null) return false;
+            if (GetMouseGroup(group) == null || GetMouseGroup(group).GetInput(mouse) == null) return false;
             return GetMouseGroup(group).GetInput(mouse).IsInput;
         }
 
