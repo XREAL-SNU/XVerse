@@ -1,0 +1,39 @@
+ManifestFileVersion: 0
+CRC: 472612379
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 1a167869a9731b4991c2e7a1aeace1b2
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 531b0af801b84f6222d90d3046c90e28
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 90
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 136
+  Script: {instanceID: 0}
+- Class: 137
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Exports/Gargoyle.prefab
+Dependencies: []
